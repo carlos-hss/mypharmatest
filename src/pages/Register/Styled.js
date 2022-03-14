@@ -43,6 +43,16 @@ export const Form = styled.form`
             background-color: transparent;
         }
     }
+
+    a {
+        text-decoration: none;
+        color: var(--gray);
+        transition: 0.2s ease-in-out;
+
+        :hover {
+            color: var(--blue-2);
+        }
+    }
 `;
 
 export const DivInputs = styled.div`

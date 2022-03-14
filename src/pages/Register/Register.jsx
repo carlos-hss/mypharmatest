@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, DivInputs, SectionRegister } from "./Styled";
 import { TextField } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import Logo from "../../assets/MyPharmaLogo1.png";
 
 const Register = () => {
@@ -68,7 +68,6 @@ const Register = () => {
                             height: "55px",
                         }}
                     />
-
                     <TextField
                         fullWidth
                         variant="outlined"
@@ -93,6 +92,9 @@ const Register = () => {
                             height: "55px",
                         }}
                     />
+
+                    <Link to="/">Já possui uma conta? Faça login.</Link>
+
                     <button type="submit">Register</button>
                 </DivInputs>
             </Form>

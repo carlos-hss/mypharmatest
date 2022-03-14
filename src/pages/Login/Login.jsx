@@ -32,7 +32,7 @@ const Login = () => {
     });
 
     const onSubmit = (object) => {
-        history.push(`/dashboard/${object.name}`);
+        history.push(`/dashboard`);
     };
 
     return (
@@ -64,9 +64,11 @@ const Login = () => {
                             height: "55px",
                         }}
                     />
-                    <Link to="/cadastro" className="link">
-                        Esqueceu a senha?
-                    </Link>
+                    <p>
+                        <Link to="/cadastro" className="link">
+                            Não tem uma conta?
+                        </Link>
+                    </p>
                     <button type="submit">Login</button>
                 </DivInputs>
             </Form>

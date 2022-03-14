@@ -18,7 +18,7 @@ export const SectionLogin = styled.section`
 export const Form = styled.form`
     width: 90%;
     max-width: 400px;
-    height: 350px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -52,10 +52,14 @@ export const DivInputs = styled.div`
     flex-direction: column;
     justify-content: space-around;
 
-    a {
+    p {
         width: 100%;
-        text-decoration: none;
         text-align: left;
+        margin: 0;
+    }
+
+    a {
+        text-decoration: none;
         color: var(--gray);
         transition: 0.2s ease-in-out;
 

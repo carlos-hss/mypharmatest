@@ -2,10 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const FontStyles = createGlobalStyle`
 
-@font-face {
-    font-family: 'Inter';
-    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-}
+font-family: 'Inter', sans-serif;
 
 :root {
     --blue-1: #273f8a;
@@ -36,6 +33,11 @@ html {
 button {
     cursor: pointer;
 }
+
+a {
+    text-decoration: none;
+}
+
 `;
 
 export default FontStyles;
