@@ -26,13 +26,13 @@ const Li = styled.li`
 const BurgerNav = ({ open }) => {
     return (
         <Nav open={open}>
-            <Link to="/dashboard">
-                <Li>Home</Li>
+            <Link to="/marcas">
+                <Li>Marcas</Li>
             </Link>
-            <Link to="/dashboard">
-                <Li>Categoria</Li>
+            <Link to="/marcas">
+                <Li>Categorias</Li>
             </Link>
-            <Link to="/dashboard">
+            <Link to="/produtos">
                 <Li>Produtos</Li>
             </Link>
         </Nav>

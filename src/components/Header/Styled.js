@@ -8,6 +8,8 @@ const HeaderStyled = styled.header`
     height: 70px;
     min-height: 70px;
     background-color: var(--blue-2);
+    box-shadow: 0px 0px 15px 3px rgba(0, 165, 254, 0.3);
+    border-radius: 0 0 5px 5px;
 
     img {
         width: 150px;

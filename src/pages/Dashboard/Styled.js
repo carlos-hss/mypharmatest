@@ -1,29 +1,5 @@
 import styled from "styled-components";
 
-export const DivHome = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-`;
-
-export const DivLine = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 131px;
-    border-top: 1px solid var(--grey-3);
-    border-bottom: 1px solid var(--grey-3);
-
-    @media (min-width: 768px) {
-        height: 118px;
-    }
-`;
-
 export const DivName = styled.div`
     display: flex;
     flex-direction: column;

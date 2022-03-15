@@ -34,17 +34,17 @@ const Li = styled.li`
     }
 `;
 
-const NavBar = ({ isDark }) => {
+const NavBar = () => {
     return (
         <>
             <NavegationBar>
-                <Link to="/dashboard">
-                    <Li>Home</Li>
+                <Link to="/marcas">
+                    <Li>Marcas</Li>
                 </Link>
-                <Link to="/dashboard">
-                    <Li>Categoria</Li>
+                <Link to="/marcas">
+                    <Li>Categorias</Li>
                 </Link>
-                <Link to="/dashboard">
+                <Link to="/produtos">
                     <Li>Produtos</Li>
                 </Link>
             </NavegationBar>

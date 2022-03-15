@@ -1,11 +1,11 @@
-import { getProducts } from "./actions";
+import { getBrands } from "./actions";
 import axios from "axios";
 
-export const getProductsThunk = () => (dispatch) => {
+export const getBrandsThunk = () => (dispatch) => {
     axios
-        .get("https://dbmypharmatest.herokuapp.com/produtos")
+        .get("https://dbmypharmatest.herokuapp.com/marcas")
         .then((res) => {
-            dispatch(getProducts(res.data));
+            dispatch(getBrands(res.data));
         })
         .catch((error) => console.log(error));
 };

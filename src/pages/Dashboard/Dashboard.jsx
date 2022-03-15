@@ -1,11 +1,11 @@
-import { DivHome } from "./Styled";
-import Header from "../../Header/Header";
+import { DivAll } from "../../components/GlobalComponents/GlobalComponents";
+import Header from "../../components/Header/Header";
 
 const Dashboard = () => {
     return (
-        <DivHome>
+        <DivAll>
             <Header />
-        </DivHome>
+        </DivAll>
     );
 };
 

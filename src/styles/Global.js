@@ -1,8 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
-const FontStyles = createGlobalStyle`
+export default createGlobalStyle`
 
-font-family: 'Inter', sans-serif;
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Fredoka', sans-serif;
+}
+
 
 :root {
     --blue-1: #273f8a;
@@ -39,5 +44,3 @@ a {
 }
 
 `;
-
-export default FontStyles;
