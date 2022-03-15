@@ -10,17 +10,10 @@ const Login = () => {
     const history = useHistory();
 
     const formData = yup.object().shape({
-        email: yup
-            .string()
-            .email("Type a valid email")
-            .required("E-mail required"),
+        email: yup.string().email("Digite um email válido").required(),
         password: yup
             .string()
-            .matches(
-                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                "Type a strong password"
-            )
-            .required("Password required"),
+            .min(6, "Digite uma senha de no mínimo 6 caracteres"),
     });
 
     const {
@@ -37,15 +30,18 @@ const Login = () => {
 
     return (
         <SectionLogin>
-            <img src={Logo} alt="" />
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Link to="/">
+                <img src={Logo} alt="" />
+            </Link>
+            <Form autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
                 <DivInputs>
                     <TextField
                         fullWidth
                         variant="outlined"
-                        label="E-mail *"
+                        label="E-mail"
+                        color="info"
+                        required
                         {...register("email")}
-                        helperText={errors.email?.message}
                         error={!!errors.email?.message}
                         sx={{
                             height: "55px",
@@ -55,10 +51,11 @@ const Login = () => {
                     <TextField
                         fullWidth
                         variant="outlined"
-                        label="Senha *"
+                        label="Senha"
                         type="password"
+                        color="info"
+                        required
                         {...register("password")}
-                        helperText={errors.password?.message}
                         error={!!errors.password?.message}
                         sx={{
                             height: "55px",

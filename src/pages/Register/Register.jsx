@@ -44,14 +44,19 @@ const Register = () => {
     return (
         <SectionRegister>
             <img src={Logo} alt="" />
-            <Form onSubmit={handleSubmit(onSubmit)}>
+            <Form
+                noValidate
+                autoComplete="off"
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <DivInputs>
                     <TextField
                         fullWidth
                         variant="outlined"
-                        label="Name"
+                        label="Nome"
+                        color="info"
+                        required
                         {...register("name")}
-                        helperText={errors.name?.message}
                         error={!!errors.name?.message}
                         sx={{
                             height: "55px",
@@ -61,8 +66,9 @@ const Register = () => {
                         fullWidth
                         variant="outlined"
                         label="E-mail"
+                        color="info"
+                        required
                         {...register("email")}
-                        helperText={errors.email?.message}
                         error={!!errors.email?.message}
                         sx={{
                             height: "55px",
@@ -71,10 +77,11 @@ const Register = () => {
                     <TextField
                         fullWidth
                         variant="outlined"
-                        label="Password"
+                        label="Senha"
                         type="password"
+                        color="info"
+                        required
                         {...register("password")}
-                        helperText={errors.password?.message}
                         error={!!errors.password?.message}
                         sx={{
                             height: "55px",
@@ -83,17 +90,18 @@ const Register = () => {
                     <TextField
                         fullWidth
                         variant="outlined"
-                        label="Confirm Password"
+                        label="Confirme sua senha"
                         type="password"
+                        color="info"
+                        required
                         {...register("passwordConfirm")}
-                        helperText={errors.passwordConfirm?.message}
                         error={!!errors.passwordConfirm?.message}
                         sx={{
                             height: "55px",
                         }}
                     />
 
-                    <Link to="/">Já possui uma conta? Faça login.</Link>
+                    <Link to="/login">Já possui uma conta? Faça login.</Link>
 
                     <button type="submit">Register</button>
                 </DivInputs>

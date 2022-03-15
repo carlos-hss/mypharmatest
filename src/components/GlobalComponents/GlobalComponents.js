@@ -144,6 +144,7 @@ export const SectionFilters = styled.section`
     align-items: center;
     width: 100%;
     height: 150px;
+    max-width: 400px;
 
     div {
         width: 100%;
@@ -211,11 +212,13 @@ export const SectionFilters = styled.section`
     @media screen and (min-width: 600px) {
         display: flex;
         flex-flow: row nowrap;
-        justify-content: space-between;
+        justify-content: space-evenly;
         height: 100px;
+        max-width: 1200px;
 
         div {
             width: 50%;
+            max-width: 400px;
         }
     }
 `;

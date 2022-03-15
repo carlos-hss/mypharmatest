@@ -1,11 +1,11 @@
-import { DivAll } from "../../components/GlobalComponents/GlobalComponents";
+import { SectionAll } from "../../components/GlobalComponents/GlobalComponents";
 import Header from "../../components/Header/Header";
 
 const Dashboard = () => {
     return (
-        <DivAll>
+        <SectionAll>
             <Header />
-        </DivAll>
+        </SectionAll>
     );
 };
 
