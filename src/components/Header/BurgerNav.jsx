@@ -29,11 +29,14 @@ const BurgerNav = ({ open }) => {
             <Link to="/marcas">
                 <Li>Marcas</Li>
             </Link>
-            <Link to="/marcas">
+            <Link to="/">
                 <Li>Categorias</Li>
             </Link>
             <Link to="/produtos">
                 <Li>Produtos</Li>
+            </Link>
+            <Link to="/login">
+                <Li>Login</Li>
             </Link>
         </Nav>
     );

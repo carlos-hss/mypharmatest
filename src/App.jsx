@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProductsThunk } from "./store/modules/products/thunks";
 import { getBrandsThunk } from "./store/modules/brands/thunks";
+import { getUsersThunk } from "./store/modules/login/thunks";
 
 const DivApp = styled.div`
     height: 100%;
@@ -23,6 +24,10 @@ const App = () => {
 
     useEffect(() => {
         dispatch(getBrandsThunk());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getUsersThunk());
     }, [dispatch]);
 
     return (

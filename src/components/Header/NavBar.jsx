@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NavegationBar = styled.nav`
     display: none;
     width: 55%;
-    max-width: 400px;
+    max-width: 450px;
     margin-right: 50px;
 
     @media (min-width: 769px) {
@@ -41,11 +41,14 @@ const NavBar = () => {
                 <Link to="/marcas">
                     <Li>Marcas</Li>
                 </Link>
-                <Link to="/marcas">
+                <Link to="/">
                     <Li>Categorias</Li>
                 </Link>
                 <Link to="/produtos">
                     <Li>Produtos</Li>
+                </Link>
+                <Link to="/login">
+                    <Li>Login</Li>
                 </Link>
             </NavegationBar>
         </>

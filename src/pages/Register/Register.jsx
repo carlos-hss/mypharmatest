@@ -4,29 +4,24 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, DivInputs, SectionRegister } from "./Styled";
 import { TextField } from "@mui/material";
 import { useHistory, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { postUserThunk } from "../../store/modules/login/thunks";
 import Logo from "../../assets/MyPharmaLogo1.png";
 
 const Register = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const formData = yup.object().shape({
         name: yup.string().required("Name required"),
         email: yup
             .string()
-            .email("Type a valid email")
-            .required("E-mail required"),
+            .email("Digite um email válido")
+            .required("Campo obrigatório"),
         password: yup
             .string()
-            .matches(
-                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                "Type a strong password"
-            )
-            .required("Password required"),
-
-        passwordConfirm: yup
-            .string()
-            .required("Password confirmation required")
-            .oneOf([yup.ref("password")], "Passwords are differents"),
+            .min(6, "Digite uma senha forte")
+            .required("Campo obrigatório"),
     });
 
     const {
@@ -38,7 +33,8 @@ const Register = () => {
     });
 
     const onSubmit = (object) => {
-        history.push(`/dashboard/${object.name}`);
+        dispatch(postUserThunk(object));
+        history.push(`/login`);
     };
 
     return (
@@ -83,19 +79,6 @@ const Register = () => {
                         required
                         {...register("password")}
                         error={!!errors.password?.message}
-                        sx={{
-                            height: "55px",
-                        }}
-                    />
-                    <TextField
-                        fullWidth
-                        variant="outlined"
-                        label="Confirme sua senha"
-                        type="password"
-                        color="info"
-                        required
-                        {...register("passwordConfirm")}
-                        error={!!errors.passwordConfirm?.message}
                         sx={{
                             height: "55px",
                         }}
