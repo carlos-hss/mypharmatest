@@ -104,7 +104,7 @@ export const DivAll = styled.div`
     width: 95%;
     max-width: 1200px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: space-evenly;
     align-items: flex-start;
 
@@ -130,6 +130,10 @@ export const DivAll = styled.div`
         :hover {
             opacity: 0.75;
         }
+    }
+
+    @media screen and (min-width: 769px) {
+        flex-flow: row wrap;
     }
 `;
 
@@ -376,5 +380,55 @@ export const FormSearch = styled.form`
         img {
             width: 13px;
         }
+    }
+`;
+
+export const DivHome = styled.div`
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 300px;
+        transition: 0.3s ease-in-out;
+
+        :hover {
+            width: 350px;
+        }
+    }
+
+    @media screen and (min-width: 769px) {
+        img {
+            width: 500px;
+
+            :hover {
+                width: 550px;
+            }
+        }
+    }
+`;
+
+export const CardHome = styled.div`
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    background-color: var(--blue-2);
+    transition: 0.2s ease-in-out;
+    margin: 30px 0;
+    border-radius: 10px;
+
+    h2 {
+        font-size: 30px;
+    }
+
+    :hover {
+        box-shadow: 0px 0px 15px 3px rgba(21, 21, 25, 0.5);
     }
 `;
