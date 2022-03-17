@@ -5,6 +5,7 @@ import { Form, DivInputs, SectionLogin } from "./Styled";
 import { TextField } from "@mui/material";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import Logo from "../../assets/MyPharmaLogo1.png";
 
 const Login = () => {
@@ -34,6 +35,7 @@ const Login = () => {
         if (verify) {
             const user = listUsers.find((user) => object.email === user.email);
             localStorage.setItem("@token", user.UUID);
+            toast.success("Login efetuado!");
             history.push(`/`);
         }
     };

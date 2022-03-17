@@ -6,6 +6,7 @@ import { TextField } from "@mui/material";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postUserThunk } from "../../store/modules/login/thunks";
+import { toast } from "react-toastify";
 import Logo from "../../assets/MyPharmaLogo1.png";
 
 const Register = () => {
@@ -34,6 +35,7 @@ const Register = () => {
 
     const onSubmit = (object) => {
         dispatch(postUserThunk(object));
+        toast.success("Usuário cadastrado");
         history.push(`/login`);
     };
 
