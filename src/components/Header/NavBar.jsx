@@ -41,7 +41,7 @@ const NavBar = () => {
                 <Link to="/marcas">
                     <Li>Marcas</Li>
                 </Link>
-                <Link to="/">
+                <Link to="/categorias">
                     <Li>Categorias</Li>
                 </Link>
                 <Link to="/produtos">

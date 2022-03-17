@@ -1,0 +1,1 @@
+export const SET_ENDPOINTS = "SET_ENDPOINTS";

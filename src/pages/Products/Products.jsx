@@ -7,6 +7,7 @@ import {
     DivModal,
     BodyModal,
     ExitSymbol,
+    FormSearch,
 } from "../../components/GlobalComponents/GlobalComponents";
 import { useState } from "react";
 import Header from "../../components/Header/Header";
@@ -16,14 +17,20 @@ import {
     editProductsThunk,
     postProductsThunk,
 } from "../../store/modules/products/thunks";
+import { setProductsEndpointThunk } from "../../store/modules/endpoint/thunks";
+import SearchIcon from "../../assets/Lupa.png";
 
-const Products = () => {
+const Products = ({ endPoint, setEndPoint }) => {
+    const dispatch = useDispatch();
+
     const [modalEdit, setModalEdit] = useState(false);
     const [modalRegister, setModalRegister] = useState(false);
     const [object, setObject] = useState({});
+    const [searchText, setSeachText] = useState("");
 
     const listProducts = useSelector((state) => state.listProducts);
-    const dispatch = useDispatch();
+    const listCategories = useSelector((state) => state.listCategories);
+    const listBrands = useSelector((state) => state.listBrands);
 
     const handleClickDelete = (id) => {
         dispatch(removeProductsThunk(id));
@@ -33,6 +40,10 @@ const Products = () => {
     };
     const handleClickPost = (data) => {
         dispatch(postProductsThunk(data));
+    };
+
+    const handleClickFilters = (data) => {
+        dispatch(setProductsEndpointThunk(data));
     };
 
     return (
@@ -110,7 +121,7 @@ const Products = () => {
                                     type="text"
                                 />
                                 <label>Categoria:</label>
-                                <input
+                                <select
                                     onChange={(evt) => {
                                         setObject({
                                             ...object,
@@ -120,19 +131,38 @@ const Products = () => {
                                     value={object.category}
                                     placeholder="Categoria"
                                     type="text"
-                                />
+                                >
+                                    <option value="">
+                                        Selecione a categoria:
+                                    </option>
+                                    {listCategories.map((category, index) => (
+                                        <option
+                                            value={category.name}
+                                            key={index}
+                                        >
+                                            {category.name}
+                                        </option>
+                                    ))}
+                                </select>
                                 <label>Marca:</label>
-                                <input
-                                    onChange={(evt) => {
+                                <select
+                                    onChange={(evt) =>
                                         setObject({
                                             ...object,
                                             brand: evt.target.value,
-                                        });
-                                    }}
+                                        })
+                                    }
                                     value={object.brand}
                                     placeholder="Marca"
                                     type="text"
-                                />
+                                >
+                                    <option value="">Selecione a marca:</option>
+                                    {listBrands.map((brand, index) => (
+                                        <option value={brand.name} key={index}>
+                                            {brand.name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <button type="submit">Editar</button>
                         </BodyModal>
@@ -217,7 +247,7 @@ const Products = () => {
                                     required
                                 />
                                 <label>Categoria:</label>
-                                <input
+                                <select
                                     onChange={(evt) => {
                                         setObject({
                                             ...object,
@@ -227,9 +257,21 @@ const Products = () => {
                                     placeholder="Categoria"
                                     type="text"
                                     required
-                                />
+                                >
+                                    <option value="">
+                                        Selecione a categoria:
+                                    </option>
+                                    {listCategories.map((category, index) => (
+                                        <option
+                                            value={category.name}
+                                            key={index}
+                                        >
+                                            {category.name}
+                                        </option>
+                                    ))}
+                                </select>
                                 <label>Marca:</label>
-                                <input
+                                <select
                                     onChange={(evt) => {
                                         setObject({
                                             ...object,
@@ -239,7 +281,14 @@ const Products = () => {
                                     placeholder="Marca"
                                     type="text"
                                     required
-                                />
+                                >
+                                    <option value="">Selecione a marca:</option>
+                                    {listBrands.map((brand, index) => (
+                                        <option value={brand.name} key={index}>
+                                            {brand.name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <button type="submit">Cadastrar</button>
                         </BodyModal>
@@ -259,16 +308,45 @@ const Products = () => {
                         </button>
                     </div>
                     <div>
-                        <input
-                            type="text"
-                            placeholder="Ex: Cimed, Cimegrip..."
-                        />
-                        <select>
-                            <option value="">Todos</option>
-                            <option value="name">Nome</option>
-                            <option value="description">Descrição</option>
-                            <option value="brand">Marca</option>
-                            <option value="category">Categoria</option>
+                        <FormSearch
+                            onSubmit={(evt) => {
+                                evt.preventDefault();
+                                handleClickFilters(`/${searchText}`);
+                            }}
+                        >
+                            <input
+                                onChange={(evt) => {
+                                    setSeachText(evt.target.value);
+                                }}
+                                className="input"
+                                type="text"
+                                placeholder="Ex: Cimed, Cimegrip..."
+                            />
+                            <button type="submit">
+                                <img src={SearchIcon} alt="" />
+                            </button>
+                        </FormSearch>
+
+                        <select
+                            onChange={(evt) => {
+                                handleClickFilters(evt.target.value);
+                            }}
+                        >
+                            <option value="/">Todos</option>
+                            <option value="/filtros/nome-a-z">Nomes A-Z</option>
+                            <option value="/filtros/nome-z-a">Nomes Z-A</option>
+                            <option value="/filtros/marca-a-z">
+                                Marcas A-Z
+                            </option>
+                            <option value="/filtros/marca-z-a">
+                                Marcas Z-A
+                            </option>
+                            <option value="/filtros/categoria-a-z">
+                                Categorias A-Z
+                            </option>
+                            <option value="/filtros/categoria-z-a">
+                                Categorias Z-A
+                            </option>
                         </select>
                     </div>
                 </SectionFilters>

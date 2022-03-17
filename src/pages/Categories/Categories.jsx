@@ -11,35 +11,35 @@ import {
 import Header from "../../components/Header/Header";
 import { useSelector, useDispatch } from "react-redux";
 import {
-    editBrandsThunk,
-    postBrandsThunk,
-    removeBrandsThunk,
-} from "../../store/modules/brands/thunks";
+    editCategoryThunk,
+    postCategoryThunk,
+    removeCategoryThunk,
+} from "../../store/modules/categories/thunks";
 import { useState } from "react";
-import { setBrandsEndpointThunk } from "../../store/modules/endpoint/thunks";
+import { setCategoriesEndpointThunk } from "../../store/modules/endpoint/thunks";
 import SearchIcon from "../../assets/Lupa.png";
 
-const Brands = () => {
+const Categories = () => {
     const [modalEdit, setModalEdit] = useState(false);
     const [modalRegister, setModalRegister] = useState(false);
     const [object, setObject] = useState({});
     const [searchText, setSeachText] = useState("");
 
-    const listBrands = useSelector((state) => state.listBrands);
+    const listCategories = useSelector((state) => state.listCategories);
     const dispatch = useDispatch();
 
     const handleClickDelete = (id) => {
-        dispatch(removeBrandsThunk(id));
+        dispatch(removeCategoryThunk(id));
     };
     const handleClickEdit = (data, id) => {
-        dispatch(editBrandsThunk(data, id));
+        dispatch(editCategoryThunk(data, id));
     };
     const handleClickPost = (data) => {
-        dispatch(postBrandsThunk(data));
+        dispatch(postCategoryThunk(data));
     };
 
     const handleClickFilters = (data) => {
-        dispatch(setBrandsEndpointThunk(data));
+        dispatch(setCategoriesEndpointThunk(data));
     };
 
     return (
@@ -55,11 +55,11 @@ const Brands = () => {
                         <div />
                         <div />
                     </ExitSymbol>
-                    <DivModal height={200}>
+                    <DivModal height={270}>
                         <h2>Editar Marca</h2>
 
                         <BodyModal
-                            height={150}
+                            height={220}
                             onSubmit={(evt) => {
                                 evt.preventDefault();
                                 handleClickEdit(object, object._id);
@@ -78,6 +78,18 @@ const Brands = () => {
                                     }}
                                     value={object.name}
                                     placeholder="Nome"
+                                    type="text"
+                                />
+                                <label>Descrição:</label>
+                                <input
+                                    onChange={(evt) => {
+                                        setObject({
+                                            ...object,
+                                            description: evt.target.value,
+                                        });
+                                    }}
+                                    value={object.description}
+                                    placeholder="Descrição"
                                     type="text"
                                 />
                                 <div className="div--buttons">
@@ -110,11 +122,11 @@ const Brands = () => {
                         <div />
                         <div />
                     </ExitSymbol>
-                    <DivModal height={200}>
-                        <h2>Cadastrar Marca</h2>
+                    <DivModal height={270}>
+                        <h2>Cadastrar Categoria</h2>
 
                         <BodyModal
-                            height={150}
+                            height={220}
                             onSubmit={(evt) => {
                                 evt.preventDefault();
                                 handleClickPost(object);
@@ -135,6 +147,18 @@ const Brands = () => {
                                     type="text"
                                     required
                                 />
+                                <label>Descrição:</label>
+                                <input
+                                    onChange={(evt) => {
+                                        setObject({
+                                            ...object,
+                                            description: evt.target.value,
+                                        });
+                                    }}
+                                    placeholder="Descrição"
+                                    type="text"
+                                    required
+                                />
                             </div>
                             <button type="submit">Cadastrar</button>
                         </BodyModal>
@@ -143,19 +167,17 @@ const Brands = () => {
             )}
             <SectionAll>
                 <Header />
-                <h1>Marcas</h1>
+                <h1>Categorias</h1>
                 <SectionFilters>
-                    <div>
-                        <button
-                            onClick={() => setModalRegister(!modalRegister)}
-                        >
-                            Cadastrar Marca
-                        </button>
+                    <button onClick={() => setModalRegister(!modalRegister)}>
+                        Cadastrar Categoria
+                    </button>
 
+                    <div>
                         <FormSearch
                             onSubmit={(evt) => {
                                 evt.preventDefault();
-                                handleClickFilters(searchText);
+                                handleClickFilters(`/${searchText}`);
                             }}
                         >
                             <input
@@ -170,18 +192,27 @@ const Brands = () => {
                                 <img src={SearchIcon} alt="" />
                             </button>
                         </FormSearch>
+                        <select
+                            onChange={(evt) => {
+                                handleClickFilters(evt.target.value);
+                            }}
+                        >
+                            <option value="/">Todos</option>
+                            <option value="/filtros/nome-a-z">Nomes A-Z</option>
+                            <option value="/filtros/nome-z-a">Nomes Z-A</option>
+                        </select>
                     </div>
                 </SectionFilters>
                 <DivAll>
-                    {listBrands.map((brand, index) => (
+                    {listCategories.map((category, index) => (
                         <h2
                             onClick={() => {
-                                setObject({ ...brand });
+                                setObject({ ...category });
                                 setModalEdit(!modalEdit);
                             }}
-                            className="h2--brand"
+                            className="h2--category"
                             key={index}
-                        >{`${brand.name}`}</h2>
+                        >{`${category.name}`}</h2>
                     ))}
                 </DivAll>
             </SectionAll>
@@ -189,4 +220,4 @@ const Brands = () => {
     );
 };
 
-export default Brands;
+export default Categories;

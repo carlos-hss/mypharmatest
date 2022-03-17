@@ -27,14 +27,13 @@ const Login = () => {
     });
 
     const onSubmit = (object) => {
-        console.log(object);
         const verify = listUsers.some(
             (user) =>
                 user.email === object.email && user.password === object.password
         );
         if (verify) {
             const user = listUsers.find((user) => object.email === user.email);
-            localStorage.setItem("@token:", user.UUID);
+            localStorage.setItem("@token", user.UUID);
             history.push(`/`);
         }
     };

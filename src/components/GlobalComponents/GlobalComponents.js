@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Card = styled.div`
     max-width: 280px;
     min-width: 220px;
-    max-height: 300px;
+    height: 300px;
     width: 30%;
     display: flex;
     flex-flow: column nowrap;
@@ -101,6 +101,7 @@ export const SectionAll = styled.section`
 `;
 
 export const DivAll = styled.div`
+    width: 95%;
     max-width: 1200px;
     display: flex;
     flex-flow: row wrap;
@@ -118,14 +119,26 @@ export const DivAll = styled.div`
             opacity: 0.75;
         }
     }
+
+    .h2--category {
+        color: var(--blue-1);
+        font-size: 40px;
+        margin: 50px;
+        transition: 0.2s ease-in-out;
+        cursor: pointer;
+
+        :hover {
+            opacity: 0.75;
+        }
+    }
 `;
 
 export const SectionModal = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     position: absolute;
     background-color: rgb(0, 0, 0, 0.9);
     z-index: 21;
@@ -234,12 +247,24 @@ export const BodyModal = styled.form`
 
     input {
         width: 100%;
+        max-width: 346px;
+        height: 40px;
+        border-radius: 5px;
+        color: var(--gray);
+        padding-left: 10px;
+        margin: 5px 0;
+        border: 2px solid white;
+    }
+
+    select {
+        width: 100%;
         max-width: 360px;
         height: 40px;
         border-radius: 5px;
         color: var(--gray);
         padding-left: 10px;
         margin: 5px 0;
+        border: 2px solid white;
     }
 `;
 
@@ -297,30 +322,6 @@ export const SectionFilters = styled.section`
         }
     }
 
-    input {
-        width: 150px;
-        height: 40px;
-        background-color: var(--blue-1);
-        border: 2px solid var(--blue-1);
-        border-radius: 10px;
-        color: var(--blue-1);
-        padding-left: 7px;
-        font-weight: 700;
-        transition: 0.2s ease-in-out;
-
-        :focus {
-            background-color: transparent;
-
-            ::placeholder {
-                color: var(--blue-1);
-            }
-        }
-
-        ::placeholder {
-            color: var(--white);
-        }
-    }
-
     @media screen and (min-width: 600px) {
         display: flex;
         flex-flow: row nowrap;
@@ -332,6 +333,48 @@ export const SectionFilters = styled.section`
             width: 50%;
             height: 100%;
             max-width: 400px;
+        }
+    }
+`;
+
+export const FormSearch = styled.form`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .input {
+        width: 150px;
+        height: 40px;
+        background-color: var(--blue-1);
+        border: 2px solid var(--blue-1);
+        border-radius: 10px;
+        color: var(--gray);
+        padding-left: 7px;
+        font-weight: 700;
+        margin-right: 5px;
+        transition: 0.2s ease-in-out;
+
+        :focus {
+            background-color: transparent;
+
+            ::placeholder {
+                color: var(--gray);
+            }
+        }
+
+        ::placeholder {
+            color: var(--white);
+        }
+    }
+
+    button {
+        background-color: var(--blue-1);
+        border: 2px solid var(--blue-1);
+        border-radius: 50%;
+        padding: 10px;
+
+        img {
+            width: 13px;
         }
     }
 `;
