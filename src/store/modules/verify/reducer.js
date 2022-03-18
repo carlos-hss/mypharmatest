@@ -1,6 +1,6 @@
 import { SET_VERIFY } from "./actionTypes";
 
-const initialState = false;
+const initialState = !!localStorage.getItem("@token");
 
 const verifyReducer = (state = initialState, action) => {
     switch (action.type) {

@@ -23,8 +23,6 @@ const App = () => {
     const endpoints = useSelector((state) => state.endpoints);
     const verify = useSelector((state) => state.verify);
 
-    console.log(verify);
-
     useEffect(() => {
         dispatch(getProductsThunk());
     }, [dispatch, endpoints.products]);
