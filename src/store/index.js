@@ -5,6 +5,7 @@ import brandsReducer from "./modules/brands/reducer";
 import usersReducer from "./modules/login/reducer";
 import categoriesReducer from "./modules/categories/reducer";
 import endpointsReducer from "./modules/endpoint/reducer";
+import verifyReducer from "./modules/verify/reducer";
 
 const reducers = combineReducers({
     listProducts: productReducer,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     listUsers: usersReducer,
     listCategories: categoriesReducer,
     endpoints: endpointsReducer,
+    verify: verifyReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

@@ -5,9 +5,21 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Products from "../pages/Products/Products";
 import Brands from "../pages/Brands/Brands";
 import Categories from "../pages/Categories/Categories";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+const CategoryRoute = ({ component: Component, verification, ...rest }) => (
+    <Route
+        {...rest}
+        render={(props) =>
+            verification ? <Component {...props} /> : <Redirect to="/login" />
+        }
+    />
+);
+
 const Routes = () => {
+    const verify = useSelector((state) => state.verify);
+
     return (
         <Switch>
             <Route exact path="/">
@@ -25,13 +37,11 @@ const Routes = () => {
             <Route path="/marcas">
                 <Brands />
             </Route>
-            <Route path="/categorias">
-                {!localStorage.getItem("@token") ? (
-                    <Redirect to="/login" />
-                ) : (
-                    <Categories />
-                )}
-            </Route>
+            <CategoryRoute
+                path="/categorias"
+                component={() => <Categories />}
+                verification={verify}
+            />
         </Switch>
     );
 };

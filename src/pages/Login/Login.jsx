@@ -4,12 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Form, DivInputs, SectionLogin } from "./Styled";
 import { TextField } from "@mui/material";
 import { useHistory, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Logo from "../../assets/MyPharmaLogo1.png";
+import { setVerifyThunk } from "../../store/modules/verify/thunks";
 
 const Login = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const listUsers = useSelector((state) => state.listUsers);
 
     const formData = yup.object().shape({
@@ -35,6 +37,7 @@ const Login = () => {
         if (verify) {
             const user = listUsers.find((user) => object.email === user.email);
             localStorage.setItem("@token", user.UUID);
+            dispatch(setVerifyThunk(true));
             toast.success("Login efetuado!");
             history.push(`/`);
         }

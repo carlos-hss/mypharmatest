@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setVerifyThunk } from "../../store/modules/verify/thunks";
+import { useSelector } from "react-redux";
 
 const NavegationBar = styled.nav`
     display: none;
@@ -35,6 +38,9 @@ const Li = styled.li`
 `;
 
 const NavBar = () => {
+    const dispatch = useDispatch();
+    const verify = useSelector((state) => state.verify);
+
     return (
         <>
             <NavegationBar>
@@ -47,9 +53,24 @@ const NavBar = () => {
                 <Link to="/produtos">
                     <Li>Produtos</Li>
                 </Link>
-                <Link to="/login">
-                    <Li>Login</Li>
-                </Link>
+                {verify ? (
+                    <>
+                        <Link to="/login">
+                            <Li
+                                onClick={() => {
+                                    localStorage.clear();
+                                    dispatch(setVerifyThunk(false));
+                                }}
+                            >
+                                Sair
+                            </Li>
+                        </Link>
+                    </>
+                ) : (
+                    <Link to="/login">
+                        <Li>Login</Li>
+                    </Link>
+                )}
             </NavegationBar>
         </>
     );
