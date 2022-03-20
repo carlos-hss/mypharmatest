@@ -384,7 +384,7 @@ export const FormSearch = styled.form`
 `;
 
 export const DivHome = styled.div`
-    width: 50%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -401,6 +401,39 @@ export const DivHome = styled.div`
     }
 
     @media screen and (min-width: 769px) {
+        width: 50%;
+        height: 100%;
+        img {
+            width: 500px;
+
+            :hover {
+                width: 550px;
+            }
+        }
+    }
+`;
+
+export const DivImage = styled.div`
+    width: 100%;
+    height: 50%;
+    display: none;
+
+    img {
+        width: 300px;
+        transition: 0.3s ease-in-out;
+
+        :hover {
+            width: 350px;
+        }
+    }
+
+    @media screen and (min-width: 769px) {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         img {
             width: 500px;
 
